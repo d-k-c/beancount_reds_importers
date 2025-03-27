@@ -63,6 +63,16 @@ extra-dependencies = [
   "xlrd",
 ]
 
+[tool.hatch.envs.test-setup]
+dependencies = [
+  "beangulp",
+  "pytest",
+  "xlrd",
+]
+
+[tool.hatch.envs.test-setup.scripts]
+generate = "pytest --generate"
+
 [tool.hatch.version]
 source = "vcs"
 

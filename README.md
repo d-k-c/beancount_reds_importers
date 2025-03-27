@@ -164,14 +164,28 @@ transactions may appear to be switched. This is described by
 and the fields can be swapped in a `custom_init`.
 
 ## Testing
-First:
+
+You might need to generate new test files as some importers are tested with
+[regression_pytest.py](https://github.com/redstreet/beancount_reds_importers/tree/main/beancount_reds_importers/util/regression_pytest.py).
+
 ```
-pip3 install xlrd
+# with hatch
+hatch run test-setup:generate
+
+# without hatch
+pytest --generate
 ```
 
-Some importers are tested with
-[regression_pytest.py](https://github.com/beancount/beancount/blob/v2/beancount/ingest/regression_pytest.py).
-Run `pytest --generate` then `pytest`.
+Execute test suite with following commands, which calls `pytest` in a dedicated
+virtual environment under the hood.
+
+```
+# witch hatch
+hatch test
+
+#without hatch
+pytest
+```
 
 Anonymized data to increase regression test coverage is most welcome. Please submit a
 PR if you can. See [here](beancount_reds_importers/importers/schwab/tests/schwab_csv_checking)

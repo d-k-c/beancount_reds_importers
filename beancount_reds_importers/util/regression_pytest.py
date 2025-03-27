@@ -34,7 +34,7 @@ Via pytest. First run your test with the --generate option to generate all the
 expected files. Then inspect them visually for correctness. Finally, check them
 in to preserve them. You should be able to regress against those correct outputs
 in the future. Use version control to your advantage to visualize the
-differences.
+differences. Alternatively, with hatch using `hatch run test-setup:generate`.
 """
 
 __copyright__ = "Copyright (C) 2018  Martin Blais"
