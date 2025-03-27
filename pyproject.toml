@@ -1,3 +1,47 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "beancount_reds_importers"
+dynamic = ["version"]
+description = "Importers for various institutions for Beancount"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "GPL-3.0"
+keywords = ["importer", "ingestor", "beancount", "accounting"]
+authors = [
+  { name = "Red Street", email = "redstreet@users.noreply.github.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Financial and Insurance Industry",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Topic :: Office/Business :: Financial :: Accounting",
+  "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+  "click >= 8.1.7",
+  "beancount >= 3.0.0",
+  "click_aliases >= 1.0.4",
+  "dateparser >= 1.2.0",
+  "ofxparse >= 0.21",
+  "openpyxl >= 3.1.2",
+  "packaging >= 23.1",
+  "pdfplumber>=0.11.0",
+  "petl >= 1.7.15",
+  "tabulate >= 0.9.0",
+  "tqdm >= 4.66.2",
+]
+
+[project.scripts]
+ofx-summarize = "beancount_reds_importers.util.ofx_summarize:summarize"
+bean-download = "beancount_reds_importers.util.bean_download:cli"
+reds-ibkr-flexquery-download = "beancount_reds_importers.importers.ibkr.flexquery_download:flexquery_download"
+
 [tool.ruff]
 line-length = 99
 
@@ -9,6 +53,18 @@ quote-style = "double"
 
 [tool.isort]
 profile = "black"
+
+[tool.hatch.envs.hatch-test]
+# default args is "tests", the directory where tests are located,
+# which is not the test layout this project has
+default-args = []
+extra-dependencies = [
+  "beangulp",
+  "xlrd",
+]
+
+[tool.hatch.version]
+source = "vcs"
 
 # A debug statement is breaking. Temporarily disabling until that can be fixed
 [tool.pytest.ini_options]
