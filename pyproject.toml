@@ -54,6 +54,21 @@ quote-style = "double"
 [tool.isort]
 profile = "black"
 
+[tool.hatch.envs.hatch-static-analysis]
+dependencies = ["ruff", "isort"]
+
+[tool.hatch.envs.hatch-static-analysis.scripts]
+format-check = [
+  "ruff format --check {args:.}",
+  "isort --profile black --check {args:.}",
+]
+format-fix = [
+  "ruff format {args:.}",
+  "isort --profile black {args:.}",
+]
+lint-check = "ruff check {args:.} --statistics "
+lint-fix = "ruff check {args:.}"
+
 [tool.hatch.envs.hatch-test]
 # default args is "tests", the directory where tests are located,
 # which is not the test layout this project has
